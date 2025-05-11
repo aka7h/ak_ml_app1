@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e0ffe0;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sales Predictor</h1>
+
+    <div class="form-container">
+        <form id="predict-form">
+            <div class="form-group">
+                <label for="Warehouse_block">Warehouse_block</label>
+                <input type="number" id="Warehouse_block" required>
+            </div>
+            <div class="form-group">
+                <label for="Mode_of_Shipment">Mode_of_Shipment</label>
+                <input type="number" id="Mode_of_Shipment" required>
+            </div>
+            <div class="form-group">
+                <label for="Customer_care_calls">Customer_care_calls</label>
+                <input type="number" id="Customer_care_calls" required>
+            </div>
+            <div class="form-group">
+                <label for="Cost_of_the_Product">Cost_of_the_Product</label>
+                <input type="number" id="Cost_of_the_Product" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="Customer_rating">Customer_rating</label>
+                <input type="number" id="Customer_rating" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="Prior_purchases">Prior_purchases</label>
+                <input type="number" id="Prior_purchases" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="Product_importance">Product_importance</label>
+                <input type="number" id="Product_importance" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <input type="number" id="Gender" step="any" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="Discount_offered">Discount_offered</label>
+                <input type="number" id="Discount_offered" step="any" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="Weight_in_gms">Weight_in_gms</label>
+                <input type="number" id="Weight_in_gms" step="any" required>
+            </div>
+            <button type="submit">Predict Sales</button>
+        </form>
+
+        <div class="result" id="result">
+            <strong>Predicted Sales: </strong><span id="sales-result"></span>
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('predict-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const data = {
+
+
+                Warehouse_block :parseFloat(document.getElementById('Warehouse_block').value),
+                Mode_of_Shipment :parseFloat(document.getElementById('Mode_of_Shipment').value),
+                Customer_care_calls :parseFloat(document.getElementById('Customer_care_calls').value),
+                Customer_rating :parseFloat(document.getElementById('Customer_rating').value),
+                Cost_of_the_Product :parseFloat(document.getElementById('Cost_of_the_Product').value),
+                Prior_purchases :parseFloat(document.getElementById('Prior_purchases').value),
+                Product_importance :parseFloat(document.getElementById('Product_importance').value),
+                Gender : parseFloat(document.getElementById('Gender').value),
+                Discount_offered :parseFloat(document.getElementById('Discount_offered').value),
+                Weight_in_gms :parseFloat(document.getElementById('Weight_in_gms').value)
+            };
+
+            // Make a POST request to the FastAPI prediction endpoint
+            const response = await fetch('http://localhost:8000//predict/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+           
+            // Show the prediction result
+            document.getElementById('sales-result').textContent = result.predicted_sales;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
