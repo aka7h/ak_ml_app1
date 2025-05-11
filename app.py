@@ -11,10 +11,10 @@ model = joblib.load('final_model.pkl')
 # Create FastAPI app
 app = FastAPI()
 
-@app.get("/", response_class=HTMLResponse)
-async def read_index():
-    with open('templates/index.html', 'r') as file:
-        return file.read()
+# @app.get("/", response_class=HTMLResponse)
+# async def read_index():
+#     with open('templates/index.html', 'r') as file:
+#         return file.read()
     
 
 # Define the input data format
@@ -54,6 +54,6 @@ def predict_sales(data: SalesData):
     return {"predicted_sales": prediction[0]}
 
 
-if __name__=="__main__":
-    uvicorn.run(app,host="0.0.0.0",port=8000)
+# if __name__=="__main__":
+#     uvicorn.run(app,host="0.0.0.0",port=8000)
 

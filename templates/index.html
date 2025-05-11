@@ -119,17 +119,16 @@
 
             const data = {
 
-
-                Warehouse_block :parseFloat(document.getElementById('Warehouse_block').value),
-                Mode_of_Shipment :parseFloat(document.getElementById('Mode_of_Shipment').value),
-                Customer_care_calls :parseFloat(document.getElementById('Customer_care_calls').value),
-                Customer_rating :parseFloat(document.getElementById('Customer_rating').value),
-                Cost_of_the_Product :parseFloat(document.getElementById('Cost_of_the_Product').value),
-                Prior_purchases :parseFloat(document.getElementById('Prior_purchases').value),
-                Product_importance :parseFloat(document.getElementById('Product_importance').value),
-                Gender : parseFloat(document.getElementById('Gender').value),
-                Discount_offered :parseFloat(document.getElementById('Discount_offered').value),
-                Weight_in_gms :parseFloat(document.getElementById('Weight_in_gms').value)
+                Warehouse_block :parseInt(document.getElementById('Warehouse_block').value),
+                Mode_of_Shipment :parseInt(document.getElementById('Mode_of_Shipment').value),
+                Customer_care_calls :parseInt(document.getElementById('Customer_care_calls').value),
+                Customer_rating :parseInt(document.getElementById('Customer_rating').value),
+                Cost_of_the_Product :parseInt(document.getElementById('Cost_of_the_Product').value),
+                Prior_purchases :parseInt(document.getElementById('Prior_purchases').value),
+                Product_importance :parseInt(document.getElementById('Product_importance').value),
+                Gender : parseInt(document.getElementById('Gender').value),
+                Discount_offered :parseInt(document.getElementById('Discount_offered').value),
+                Weight_in_gms :parseInt(document.getElementById('Weight_in_gms').value)
             };
 
             // Make a POST request to the FastAPI prediction endpoint
