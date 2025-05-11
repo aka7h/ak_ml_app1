@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install fastapi uvicorn joblib scikit-learn pandas xgboost pickle
+RUN pip install fastapi uvicorn joblib scikit-learn pandas xgboost pickle5
 
 # Expose the port the app will run on
 EXPOSE 8000
