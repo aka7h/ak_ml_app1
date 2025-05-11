@@ -1,6 +1,5 @@
 fastapi
 uvicorn
-pickle 
 scikit-learn
 pandas
 xgboost
